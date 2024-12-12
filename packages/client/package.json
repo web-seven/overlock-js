@@ -1,23 +1,23 @@
 {
   "name": "@overlockjs/client",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "author": "Evgheni Poleacov <web7evgheni@gmail.com>",
   "description": " ",
   "main": "index.js",
   "module": "esm/index.js",
   "types": "index.d.ts",
-  "homepage": "https://github.com/overlockjs/client",
-  "license": "SEE LICENSE IN LICENSE",
+  "homepage": "https://github.com/web-seven/overlock-js",
+  "license": "MIT",
   "publishConfig": {
     "access": "public",
     "directory": "dist"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/overlockjs/client"
+    "url": "https://github.com/web-seven/overlock-js"
   },
   "bugs": {
-    "url": "https://github.com/overlockjs/client/issues"
+    "url": "https://github.com/web-seven/overlock-js/issues"
   },
   "scripts": {
     "copy": "copyfiles -f ../../LICENSE README.md package.json dist",
