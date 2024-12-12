@@ -1,6 +1,6 @@
 {
   "name": "overlockjs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Evgheni Poleacov <web7evgheni@gmail.com>",
   "description": "Typescript Protobuf Messages for Overlock",
   "main": "index.js",
@@ -25,7 +25,7 @@
     "clean": "rimraf dist/**",
     "prepare": "npm run build",
     "codegen": "ts-node scripts/codegen.ts",
-    "export": "buf export modules/overlock/proto --output ./proto", 
+    "export": "buf export modules/overlock/proto --output ./proto",
     "build": "npm run clean; tsc; tsc -p tsconfig.esm.json; npm run copy",
     "build:dev": "npm run clean; npm run codegen; tsc --declarationMap; tsc -p tsconfig.esm.json; npm run copy",
     "lint": "eslint . --fix",
@@ -36,9 +36,9 @@
     "@cosmology/telescope": "^1.10.0"
   },
   "dependencies": {
+    "@cosmjs/amino": "0.32.3",
     "@cosmjs/encoding": "0.32.3",
     "@cosmjs/math": "0.32.3",
-    "@cosmjs/amino": "0.32.3",
     "@cosmjs/proto-signing": "0.32.3",
     "@cosmjs/stargate": "0.32.3",
     "@cosmology/lcd": "^0.14.0"
