@@ -20,6 +20,7 @@
     "lint": "lerna run lint --parallel",
     "test": "lerna run test --stream --scope @overlockjs/client",
     "codegen": "lerna run codegen --stream --scope @overlockjs/client",
+    "export": "lerna run export --stream --scope @overlockjs/client",
     "symlink": "symlink-workspace --logLevel error",
     "postinstall": "yarn symlink"
   },
