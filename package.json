@@ -1,63 +1,49 @@
 {
-  "name": "overlockjs",
-  "version": "1.0.0",
-  "description": "Typescript Protobuf Messages for Overlock",
+  "name": "overlock-js",
+  "version": "0.0.1",
   "author": "Evgheni Poleacov <web7evgheni@gmail.com>",
-  "main": "index.js",
-  "module": "esm/index.js",
-  "types": "index.d.ts",
-  "homepage": "https://github.com/web-seven/overlockjs",
-  "license": "SEE LICENSE IN LICENSE",
-  "publishConfig": {
-    "access": "public",
-    "directory": "dist"
-  },
+  "private": false,
   "repository": {
     "type": "git",
     "url": "https://github.com/web-seven/overlockjs"
   },
-  "bugs": {
-    "url": "https://github.com/web-seven/overlockjs/issues"
+  "license": "SEE LICENSE IN LICENSE",
+  "publishConfig": {
+    "access": "restricted"
   },
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "copy": "copyfiles -f LICENSE-MIT LICENSE-Apache README.md package.json dist",
-    "clean": "del dist/**",
-    "prepare": "npm run build",
-    "build": "npm run clean; tsc; tsc -p tsconfig.esm.json; npm run copy",
-    "codegen": "ts-node ./scripts/codegen.ts",
-    "test": "jest --config ./jest.overlockjs.config.js",
-    "test:watch": "jest --watch --config ./jest.overlockjs.config.js",
-    "test:debug": "node --inspect node_modules/.bin/jest --runInBand --config ./jest.overlockjs.config.js",
-    "starship": "starship --config starship/configs/config.yaml",
-    "starship:test": "jest --config ./jest.starship.config.js --verbose --bail",
-    "starship:debug": "jest --config ./jest.starship.config.js --runInBand --verbose --bail",
-    "starship:watch": "jest --watch --config ./jest.starship.config.js"
+    "clean": "lerna run clean",
+    "build": "lerna run build --stream",
+    "lint": "lerna run lint --parallel",
+    "test": "lerna run test --stream --scope overlockjs",
+    "export": "lerna run export", 
+    "codegen": "lerna run codegen --stream --scope overlockjs",
+    "symlink": "symlink-workspace --logLevel error",
+    "postinstall": "yarn symlink",
+    "publish": "lerna publish"
   },
   "devDependencies": {
-    "@chain-registry/client": "1.31.2",
-    "@chain-registry/types": "0.16.0",
-    "@cosmology/telescope": "1.10.11",
-    "@protobufs/confio": "^0.0.6",
-    "@protobufs/cosmos": "^0.1.0",
-    "@protobufs/cosmos_proto": "^0.0.10",
-    "@protobufs/cosmwasm": "^0.1.1",
-    "@protobufs/gogoproto": "^0.0.10",
-    "@protobufs/google": "^0.0.10",
-    "@protobufs/ibc": "^0.1.0",
-    "@protobufs/osmosis": "^0.4.0",
-    "@protobufs/tendermint": "^0.0.10",
-    "@starship-ci/cli": "^2.13.0",
-    "starshipjs": "^2.4.1"
-  },
-  "dependencies": {
-    "@cosmjs/amino": "0.32.3",
-    "@cosmjs/proto-signing": "0.32.3",
-    "@cosmjs/stargate": "0.32.3",
-    "@cosmjs/tendermint-rpc": "0.32.3",
-    "@cosmology/lcd": "^0.13.3"
-  },
-  "keywords": [
-    "web3",
-    "overlockjs"
-  ]
+    "@types/jest": "^29.5.11",
+    "@types/node": "^20.12.7",
+    "@typescript-eslint/eslint-plugin": "^7.10.0",
+    "@typescript-eslint/parser": "^7.10.0",
+    "@bufbuild/buf":"1.47.2",
+    "copyfiles": "^2.4.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-simple-import-sort": "^12.1.0",
+    "eslint-plugin-unused-imports": "^4.0.0",
+    "eslint": "^8.56.0",
+    "jest": "^29.6.2",
+    "lerna": "^6",
+    "prettier": "^3.0.2",
+    "rimraf": "4.4.1",
+    "strip-ansi": "^5",
+    "symlink-workspace": "^1.1.0",
+    "ts-jest": "^29.1.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.1.6"
+  }
 }

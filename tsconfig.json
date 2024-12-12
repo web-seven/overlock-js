@@ -1,21 +1,16 @@
 {
-  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "dist",
-    "rootDir": "src/"
+    "target": "es2022",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "strictNullChecks": false,
+    "skipLibCheck": true,
+    "sourceMap": false,
+    "declaration": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node"
   },
-  "include": [
-    "src/**/*.ts"
-  ],
-  "exclude": [
-    "dist",
-    "cosmos-sdk",
-    "ibc-go",
-    "osmosis",
-    "ics23",
-    "wasmd",
-    "node_modules",
-    "**/*.spec.*",
-    "**/*.test.*"
-  ]
+  "exclude": ["dist", "node_modules"]
 }
