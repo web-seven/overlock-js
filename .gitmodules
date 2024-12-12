@@ -1,0 +1,3 @@
+[submodule "overlock"]
+	path = packages/client/modules/overlock
+	url = git@github.com:web-seven/overlock-network.git
