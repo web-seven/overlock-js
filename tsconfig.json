@@ -1,0 +1,21 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src/"
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "dist",
+    "cosmos-sdk",
+    "ibc-go",
+    "osmosis",
+    "ics23",
+    "wasmd",
+    "node_modules",
+    "**/*.spec.*",
+    "**/*.test.*"
+  ]
+}
