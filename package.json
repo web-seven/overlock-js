@@ -1,11 +1,11 @@
 {
-  "name": "overlock-js",
+  "name": "overlockjs",
   "version": "0.0.1",
   "author": "Evgheni Poleacov <web7evgheni@gmail.com>",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/web-seven/overlockjs"
+    "url": "https://github.com/web-seven/overlock-js"
   },
   "license": "SEE LICENSE IN LICENSE",
   "publishConfig": {
@@ -22,8 +22,7 @@
     "export": "lerna run export", 
     "codegen": "lerna run codegen --stream --scope overlockjs",
     "symlink": "symlink-workspace --logLevel error",
-    "postinstall": "yarn symlink",
-    "publish": "lerna publish"
+    "postinstall": "yarn symlink"
   },
   "devDependencies": {
     "@types/jest": "^29.5.11",

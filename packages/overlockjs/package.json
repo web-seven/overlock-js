@@ -1,13 +1,13 @@
 {
-  "name": "overlockjs",
-  "version": "0.0.2",
+  "name": "@overlockjs/client",
+  "version": "0.0.3",
   "author": "Evgheni Poleacov <web7evgheni@gmail.com>",
   "description": "Typescript Protobuf Messages for Overlock",
   "main": "index.js",
   "module": "esm/index.js",
   "types": "index.d.ts",
   "private": false,
-  "homepage": "https://github.com/web-seven/overlockjs",
+  "homepage": "https://github.com/web-seven/overlock-js",
   "license": "SEE LICENSE IN LICENSE",
   "publishConfig": {
     "access": "public",
@@ -15,10 +15,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/web-seven/overlockjs"
+    "url": "https://github.com/web-seven/overlock-js"
   },
   "bugs": {
-    "url": "https://github.com/web-seven/overlockjs/issues"
+    "url": "https://github.com/web-seven/overlock-js/issues"
   },
   "scripts": {
     "copy": "copyfiles -f ../../LICENSE README.md package.json dist",
@@ -43,5 +43,6 @@
     "@cosmjs/stargate": "0.32.3",
     "@cosmology/lcd": "^0.14.0"
   },
-  "keywords": []
+  "keywords": [],
+  "gitHead": "9510b8feca5933cc927726a2b7c52fd374dad8ce"
 }

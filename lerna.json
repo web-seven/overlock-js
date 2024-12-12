@@ -8,6 +8,7 @@
   "packages": [
     "packages/*"
   ],
+  "useWorkspaces": true,
   "version": "independent",
   "registry": "https://registry.npmjs.org",
   "command": {
