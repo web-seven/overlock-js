@@ -2,7 +2,7 @@
   "name": "overlock-js",
   "version": "0.0.1",
   "author": "Evgheni Poleacov <web7evgheni@gmail.com>",
-  "private": false,
+  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/web-seven/overlockjs"
