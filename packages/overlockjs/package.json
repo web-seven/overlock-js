@@ -1,6 +1,6 @@
 {
   "name": "@overlockjs/client",
-  "version": "0.0.3",
+  "version": "0.0.7",
   "author": "Evgheni Poleacov <web7evgheni@gmail.com>",
   "description": "Typescript Protobuf Messages for Overlock",
   "main": "index.js",
@@ -21,7 +21,7 @@
     "url": "https://github.com/web-seven/overlock-js/issues"
   },
   "scripts": {
-    "copy": "copyfiles -f ../../LICENSE README.md package.json dist",
+    "copy": "copyfiles -f ../../LICENSE ../../README.md ./package.json dist",
     "clean": "rimraf dist/**",
     "prepare": "npm run build",
     "codegen": "ts-node scripts/codegen.ts",

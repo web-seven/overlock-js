@@ -18,9 +18,9 @@
     "clean": "lerna run clean",
     "build": "lerna run build --stream",
     "lint": "lerna run lint --parallel",
-    "test": "lerna run test --stream --scope overlockjs",
+    "test": "lerna run test --stream --scope @overlockjs",
     "export": "lerna run export", 
-    "codegen": "lerna run codegen --stream --scope overlockjs",
+    "codegen": "lerna run codegen --stream --scope @overlockjs",
     "symlink": "symlink-workspace --logLevel error",
     "postinstall": "yarn symlink"
   },
