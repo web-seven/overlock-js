@@ -8,12 +8,11 @@
   "packages": [
     "packages/*"
   ],
-  "useWorkspaces": true,
   "version": "independent",
   "registry": "https://registry.npmjs.org",
   "command": {
     "create": {
-      "homepage": "https://github.com/web-seven/overlockjs",
+      "homepage": "https://github.com/overlockjs/client",
       "license": "SEE LICENSE IN LICENSE",
       "access": "restricted"
     },

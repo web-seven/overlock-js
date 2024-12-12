@@ -1,26 +1,26 @@
-# overlockjs
+# @overlockjs/client
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/545047/188804067-28e67e5e-0214-4449-ab04-2e0c564a6885.svg" width="80"><br />
-    Typescript Protobuf Messages for Overlock
+     
 </p>
 
 <p align="center" width="100%">
-  <a href="https://github.com/web-seven/overlockjs/actions/workflows/run-tests.yml">
-    <img height="20" src="https://github.com/web-seven/overlockjs/actions/workflows/run-tests.yml/badge.svg" />
+  <a href="https://github.com/overlockjs/client/actions/workflows/run-tests.yml">
+    <img height="20" src="https://github.com/overlockjs/client/actions/workflows/run-tests.yml/badge.svg" />
   </a>
-   <a href="https://github.com/web-seven/overlockjs/blob/main/LICENSE"><img height="20" src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
+   <a href="https://github.com/overlockjs/client/blob/main/LICENSE"><img height="20" src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
 </p>
 
 
 ## install
 
 ```sh
-npm install overlockjs
+npm install @overlockjs/client
 ```
 ## Table of contents
 
-- [overlockjs](#overlockjs)
+- [@overlockjs/client](#@overlockjs/client)
   - [Install](#install)
   - [Table of contents](#table-of-contents)
 - [Usage](#usage)
@@ -45,7 +45,7 @@ npm install overlockjs
 ### RPC Clients
 
 ```js
-import { overlock } from 'overlockjs';
+import { overlock } from '@overlockjs/client';
 
 const { createRPCQueryClient } = overlock.ClientFactory; 
 const client = await createRPCQueryClient({ rpcEndpoint: RPC_ENDPOINT });
@@ -61,10 +61,10 @@ const balances = await client.overlock.exchange.v1beta1
 
 ### Composing Messages
 
-Import the `overlock` object from `overlockjs`. 
+Import the `overlock` object from `@overlockjs/client`. 
 
 ```js
-import { overlock } from 'overlockjs';
+import { overlock } from '@overlockjs/client';
 
 const {
     createSpotLimitOrder,
@@ -76,7 +76,7 @@ const {
 #### CosmWasm Messages
 
 ```js
-import { cosmwasm } from "overlockjs";
+import { cosmwasm } from "@overlockjs/client";
 
 const {
     clearAdmin,
@@ -91,7 +91,7 @@ const {
 #### IBC Messages
 
 ```js
-import { ibc } from 'overlockjs';
+import { ibc } from '@overlockjs/client';
 
 const {
     transfer
@@ -101,7 +101,7 @@ const {
 #### Cosmos Messages
 
 ```js
-import { cosmos } from 'overlockjs';
+import { cosmos } from '@overlockjs/client';
 
 const {
     fundCommunityPool,
@@ -142,7 +142,7 @@ Here are the docs on [creating signers](https://docs.cosmology.zone/cosmos-kit) 
 Use `getSigningOverlockClient` to get your `SigningStargateClient`, with the proto/amino messages full-loaded. No need to manually add amino types, just require and initialize the client:
 
 ```js
-import { getSigningOverlockClient } from 'overlockjs';
+import { getSigningOverlockClient } from 'client';
 
 const stargateClient = await getSigningOverlockClient({
   rpcEndpoint,
@@ -230,7 +230,7 @@ import {
     ibcAminoConverters,
     overlockAminoConverters,
     overlockProtoRegistry
-} from 'overlockjs';
+} from 'client';
 
 const signer: OfflineSigner = /* create your signer (see above)  */
 const rpcEndpint = 'https://rpc.cosmos.directory/overlock'; // or another URL
@@ -269,7 +269,7 @@ yarn build
 
 ### Codegen
 
-Look inside of `scripts/codegen.ts` and configure the settings for bundling your SDK and contracts into `overlockjs`:
+Look inside of `scripts/codegen.ts` and configure the settings for bundling your SDK and contracts into `@overlockjs/client`:
 
 ```
 yarn codegen
