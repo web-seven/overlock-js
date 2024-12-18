@@ -1,6 +1,6 @@
 {
   "name": "@overlockjs/client",
-  "version": "0.0.9",
+  "version": "0.0.11",
   "author": "Evgheni Poleacov <web7evgheni@gmail.com>",
   "description": " ",
   "main": "index.js",

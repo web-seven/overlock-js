@@ -1,5 +1,6 @@
 //@ts-nocheck
 import { Params, ParamsAmino, ParamsSDKType } from "./params";
+import { ConfigurationSpec, ConfigurationSpecAmino, ConfigurationSpecSDKType } from "./configuration";
 import { BinaryReader, BinaryWriter } from "../../binary";
 /** MsgUpdateParams is the Msg/UpdateParams request type. */
 export interface MsgUpdateParams {
@@ -91,7 +92,7 @@ export interface MsgCreateConfigurationResponseSDKType {
 export interface MsgUpdateConfiguration {
   creator: string;
   name: string;
-  spec: string;
+  spec?: ConfigurationSpec;
   id: bigint;
 }
 export interface MsgUpdateConfigurationProtoMsg {
@@ -101,7 +102,7 @@ export interface MsgUpdateConfigurationProtoMsg {
 export interface MsgUpdateConfigurationAmino {
   creator?: string;
   name?: string;
-  spec?: string;
+  spec?: ConfigurationSpecAmino;
   id?: string;
 }
 export interface MsgUpdateConfigurationAminoMsg {
@@ -111,7 +112,7 @@ export interface MsgUpdateConfigurationAminoMsg {
 export interface MsgUpdateConfigurationSDKType {
   creator: string;
   name: string;
-  spec: string;
+  spec?: ConfigurationSpecSDKType;
   id: bigint;
 }
 export interface MsgUpdateConfigurationResponse {}
@@ -429,7 +430,7 @@ function createBaseMsgUpdateConfiguration(): MsgUpdateConfiguration {
   return {
     creator: "",
     name: "",
-    spec: "",
+    spec: undefined,
     id: BigInt(0)
   };
 }
@@ -442,8 +443,8 @@ export const MsgUpdateConfiguration = {
     if (message.name !== "") {
       writer.uint32(18).string(message.name);
     }
-    if (message.spec !== "") {
-      writer.uint32(26).string(message.spec);
+    if (message.spec !== undefined) {
+      ConfigurationSpec.encode(message.spec, writer.uint32(26).fork()).ldelim();
     }
     if (message.id !== BigInt(0)) {
       writer.uint32(32).uint64(message.id);
@@ -464,7 +465,7 @@ export const MsgUpdateConfiguration = {
           message.name = reader.string();
           break;
         case 3:
-          message.spec = reader.string();
+          message.spec = ConfigurationSpec.decode(reader, reader.uint32());
           break;
         case 4:
           message.id = reader.uint64();
@@ -480,7 +481,7 @@ export const MsgUpdateConfiguration = {
     const message = createBaseMsgUpdateConfiguration();
     message.creator = object.creator ?? "";
     message.name = object.name ?? "";
-    message.spec = object.spec ?? "";
+    message.spec = object.spec !== undefined && object.spec !== null ? ConfigurationSpec.fromPartial(object.spec) : undefined;
     message.id = object.id !== undefined && object.id !== null ? BigInt(object.id.toString()) : BigInt(0);
     return message;
   },
@@ -493,7 +494,7 @@ export const MsgUpdateConfiguration = {
       message.name = object.name;
     }
     if (object.spec !== undefined && object.spec !== null) {
-      message.spec = object.spec;
+      message.spec = ConfigurationSpec.fromAmino(object.spec);
     }
     if (object.id !== undefined && object.id !== null) {
       message.id = BigInt(object.id);
@@ -504,7 +505,7 @@ export const MsgUpdateConfiguration = {
     const obj: any = {};
     obj.creator = message.creator === "" ? undefined : message.creator;
     obj.name = message.name === "" ? undefined : message.name;
-    obj.spec = message.spec === "" ? undefined : message.spec;
+    obj.spec = message.spec ? ConfigurationSpec.toAmino(message.spec) : undefined;
     obj.id = message.id !== BigInt(0) ? message.id?.toString() : undefined;
     return obj;
   },
