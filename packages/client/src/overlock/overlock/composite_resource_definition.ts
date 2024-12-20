@@ -1,40 +1,40 @@
 //@ts-nocheck
 import { Metadata, MetadataAmino, MetadataSDKType } from "./metadata";
-import { CompositionSpec, CompositionSpecAmino, CompositionSpecSDKType } from "./composition_spec";
+import { XrdSpec, XrdSpecAmino, XrdSpecSDKType } from "./xrd_spec";
 import { BinaryReader, BinaryWriter } from "../../binary";
-/** Composition represents the composition of resources. */
-export interface Composition {
+/** Complete CompositeResourceDefinition object. */
+export interface CompositeResourceDefinition {
   id: bigint;
   apiVersion: string;
   kind: string;
   metadata?: Metadata;
-  spec?: CompositionSpec;
+  spec?: XrdSpec;
 }
-export interface CompositionProtoMsg {
-  typeUrl: "/overlock.overlock.Composition";
+export interface CompositeResourceDefinitionProtoMsg {
+  typeUrl: "/overlock.overlock.CompositeResourceDefinition";
   value: Uint8Array;
 }
-/** Composition represents the composition of resources. */
-export interface CompositionAmino {
+/** Complete CompositeResourceDefinition object. */
+export interface CompositeResourceDefinitionAmino {
   id?: string;
   api_version?: string;
   kind?: string;
   metadata?: MetadataAmino;
-  spec?: CompositionSpecAmino;
+  spec?: XrdSpecAmino;
 }
-export interface CompositionAminoMsg {
-  type: "/overlock.overlock.Composition";
-  value: CompositionAmino;
+export interface CompositeResourceDefinitionAminoMsg {
+  type: "/overlock.overlock.CompositeResourceDefinition";
+  value: CompositeResourceDefinitionAmino;
 }
-/** Composition represents the composition of resources. */
-export interface CompositionSDKType {
+/** Complete CompositeResourceDefinition object. */
+export interface CompositeResourceDefinitionSDKType {
   id: bigint;
   api_version: string;
   kind: string;
   metadata?: MetadataSDKType;
-  spec?: CompositionSpecSDKType;
+  spec?: XrdSpecSDKType;
 }
-function createBaseComposition(): Composition {
+function createBaseCompositeResourceDefinition(): CompositeResourceDefinition {
   return {
     id: BigInt(0),
     apiVersion: "",
@@ -43,9 +43,9 @@ function createBaseComposition(): Composition {
     spec: undefined
   };
 }
-export const Composition = {
-  typeUrl: "/overlock.overlock.Composition",
-  encode(message: Composition, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
+export const CompositeResourceDefinition = {
+  typeUrl: "/overlock.overlock.CompositeResourceDefinition",
+  encode(message: CompositeResourceDefinition, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
     if (message.id !== BigInt(0)) {
       writer.uint32(8).uint64(message.id);
     }
@@ -59,14 +59,14 @@ export const Composition = {
       Metadata.encode(message.metadata, writer.uint32(34).fork()).ldelim();
     }
     if (message.spec !== undefined) {
-      CompositionSpec.encode(message.spec, writer.uint32(42).fork()).ldelim();
+      XrdSpec.encode(message.spec, writer.uint32(42).fork()).ldelim();
     }
     return writer;
   },
-  decode(input: BinaryReader | Uint8Array, length?: number): Composition {
+  decode(input: BinaryReader | Uint8Array, length?: number): CompositeResourceDefinition {
     const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseComposition();
+    const message = createBaseCompositeResourceDefinition();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -83,7 +83,7 @@ export const Composition = {
           message.metadata = Metadata.decode(reader, reader.uint32());
           break;
         case 5:
-          message.spec = CompositionSpec.decode(reader, reader.uint32());
+          message.spec = XrdSpec.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -92,17 +92,17 @@ export const Composition = {
     }
     return message;
   },
-  fromPartial(object: Partial<Composition>): Composition {
-    const message = createBaseComposition();
+  fromPartial(object: Partial<CompositeResourceDefinition>): CompositeResourceDefinition {
+    const message = createBaseCompositeResourceDefinition();
     message.id = object.id !== undefined && object.id !== null ? BigInt(object.id.toString()) : BigInt(0);
     message.apiVersion = object.apiVersion ?? "";
     message.kind = object.kind ?? "";
     message.metadata = object.metadata !== undefined && object.metadata !== null ? Metadata.fromPartial(object.metadata) : undefined;
-    message.spec = object.spec !== undefined && object.spec !== null ? CompositionSpec.fromPartial(object.spec) : undefined;
+    message.spec = object.spec !== undefined && object.spec !== null ? XrdSpec.fromPartial(object.spec) : undefined;
     return message;
   },
-  fromAmino(object: CompositionAmino): Composition {
-    const message = createBaseComposition();
+  fromAmino(object: CompositeResourceDefinitionAmino): CompositeResourceDefinition {
+    const message = createBaseCompositeResourceDefinition();
     if (object.id !== undefined && object.id !== null) {
       message.id = BigInt(object.id);
     }
@@ -116,32 +116,32 @@ export const Composition = {
       message.metadata = Metadata.fromAmino(object.metadata);
     }
     if (object.spec !== undefined && object.spec !== null) {
-      message.spec = CompositionSpec.fromAmino(object.spec);
+      message.spec = XrdSpec.fromAmino(object.spec);
     }
     return message;
   },
-  toAmino(message: Composition): CompositionAmino {
+  toAmino(message: CompositeResourceDefinition): CompositeResourceDefinitionAmino {
     const obj: any = {};
     obj.id = message.id !== BigInt(0) ? message.id?.toString() : undefined;
     obj.api_version = message.apiVersion === "" ? undefined : message.apiVersion;
     obj.kind = message.kind === "" ? undefined : message.kind;
     obj.metadata = message.metadata ? Metadata.toAmino(message.metadata) : undefined;
-    obj.spec = message.spec ? CompositionSpec.toAmino(message.spec) : undefined;
+    obj.spec = message.spec ? XrdSpec.toAmino(message.spec) : undefined;
     return obj;
   },
-  fromAminoMsg(object: CompositionAminoMsg): Composition {
-    return Composition.fromAmino(object.value);
+  fromAminoMsg(object: CompositeResourceDefinitionAminoMsg): CompositeResourceDefinition {
+    return CompositeResourceDefinition.fromAmino(object.value);
   },
-  fromProtoMsg(message: CompositionProtoMsg): Composition {
-    return Composition.decode(message.value);
+  fromProtoMsg(message: CompositeResourceDefinitionProtoMsg): CompositeResourceDefinition {
+    return CompositeResourceDefinition.decode(message.value);
   },
-  toProto(message: Composition): Uint8Array {
-    return Composition.encode(message).finish();
+  toProto(message: CompositeResourceDefinition): Uint8Array {
+    return CompositeResourceDefinition.encode(message).finish();
   },
-  toProtoMsg(message: Composition): CompositionProtoMsg {
+  toProtoMsg(message: CompositeResourceDefinition): CompositeResourceDefinitionProtoMsg {
     return {
-      typeUrl: "/overlock.overlock.Composition",
-      value: Composition.encode(message).finish()
+      typeUrl: "/overlock.overlock.CompositeResourceDefinition",
+      value: CompositeResourceDefinition.encode(message).finish()
     };
   }
 };

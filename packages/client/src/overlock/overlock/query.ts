@@ -2,6 +2,8 @@
 import { PageRequest, PageRequestAmino, PageRequestSDKType, PageResponse, PageResponseAmino, PageResponseSDKType } from "../../cosmos/base/query/v1beta1/pagination";
 import { Params, ParamsAmino, ParamsSDKType } from "./params";
 import { Configuration, ConfigurationAmino, ConfigurationSDKType } from "./configuration";
+import { Composition, CompositionAmino, CompositionSDKType } from "./composition";
+import { CompositeResourceDefinition, CompositeResourceDefinitionAmino, CompositeResourceDefinitionSDKType } from "./composite_resource_definition";
 import { BinaryReader, BinaryWriter } from "../../binary";
 /** QueryParamsRequest is request type for the Query/Params RPC method. */
 export interface QueryParamsRequest {}
@@ -108,6 +110,148 @@ export interface QueryListConfigurationResponseAminoMsg {
 }
 export interface QueryListConfigurationResponseSDKType {
   configurations: ConfigurationSDKType[];
+  pagination?: PageResponseSDKType;
+}
+export interface QueryListCompositionRequest {
+  pagination: PageRequest;
+}
+export interface QueryListCompositionRequestProtoMsg {
+  typeUrl: "/overlock.overlock.QueryListCompositionRequest";
+  value: Uint8Array;
+}
+export interface QueryListCompositionRequestAmino {
+  pagination?: PageRequestAmino;
+}
+export interface QueryListCompositionRequestAminoMsg {
+  type: "/overlock.overlock.QueryListCompositionRequest";
+  value: QueryListCompositionRequestAmino;
+}
+export interface QueryListCompositionRequestSDKType {
+  pagination: PageRequestSDKType;
+}
+export interface QueryListCompositionResponse {
+  compositions: Composition[];
+  pagination?: PageResponse;
+}
+export interface QueryListCompositionResponseProtoMsg {
+  typeUrl: "/overlock.overlock.QueryListCompositionResponse";
+  value: Uint8Array;
+}
+export interface QueryListCompositionResponseAmino {
+  compositions?: CompositionAmino[];
+  pagination?: PageResponseAmino;
+}
+export interface QueryListCompositionResponseAminoMsg {
+  type: "/overlock.overlock.QueryListCompositionResponse";
+  value: QueryListCompositionResponseAmino;
+}
+export interface QueryListCompositionResponseSDKType {
+  compositions: CompositionSDKType[];
+  pagination?: PageResponseSDKType;
+}
+export interface QueryShowCompositionRequest {
+  id: bigint;
+}
+export interface QueryShowCompositionRequestProtoMsg {
+  typeUrl: "/overlock.overlock.QueryShowCompositionRequest";
+  value: Uint8Array;
+}
+export interface QueryShowCompositionRequestAmino {
+  id?: string;
+}
+export interface QueryShowCompositionRequestAminoMsg {
+  type: "/overlock.overlock.QueryShowCompositionRequest";
+  value: QueryShowCompositionRequestAmino;
+}
+export interface QueryShowCompositionRequestSDKType {
+  id: bigint;
+}
+export interface QueryShowCompositionResponse {
+  composition?: Composition;
+}
+export interface QueryShowCompositionResponseProtoMsg {
+  typeUrl: "/overlock.overlock.QueryShowCompositionResponse";
+  value: Uint8Array;
+}
+export interface QueryShowCompositionResponseAmino {
+  composition?: CompositionAmino;
+}
+export interface QueryShowCompositionResponseAminoMsg {
+  type: "/overlock.overlock.QueryShowCompositionResponse";
+  value: QueryShowCompositionResponseAmino;
+}
+export interface QueryShowCompositionResponseSDKType {
+  composition?: CompositionSDKType;
+}
+export interface QueryShowXrdRequest {
+  id: bigint;
+}
+export interface QueryShowXrdRequestProtoMsg {
+  typeUrl: "/overlock.overlock.QueryShowXrdRequest";
+  value: Uint8Array;
+}
+export interface QueryShowXrdRequestAmino {
+  id?: string;
+}
+export interface QueryShowXrdRequestAminoMsg {
+  type: "/overlock.overlock.QueryShowXrdRequest";
+  value: QueryShowXrdRequestAmino;
+}
+export interface QueryShowXrdRequestSDKType {
+  id: bigint;
+}
+export interface QueryShowXrdResponse {
+  xrd?: CompositeResourceDefinition;
+}
+export interface QueryShowXrdResponseProtoMsg {
+  typeUrl: "/overlock.overlock.QueryShowXrdResponse";
+  value: Uint8Array;
+}
+export interface QueryShowXrdResponseAmino {
+  xrd?: CompositeResourceDefinitionAmino;
+}
+export interface QueryShowXrdResponseAminoMsg {
+  type: "/overlock.overlock.QueryShowXrdResponse";
+  value: QueryShowXrdResponseAmino;
+}
+export interface QueryShowXrdResponseSDKType {
+  xrd?: CompositeResourceDefinitionSDKType;
+}
+export interface QueryListXrdRequest {
+  pagination: PageRequest;
+}
+export interface QueryListXrdRequestProtoMsg {
+  typeUrl: "/overlock.overlock.QueryListXrdRequest";
+  value: Uint8Array;
+}
+export interface QueryListXrdRequestAmino {
+  pagination?: PageRequestAmino;
+}
+export interface QueryListXrdRequestAminoMsg {
+  type: "/overlock.overlock.QueryListXrdRequest";
+  value: QueryListXrdRequestAmino;
+}
+export interface QueryListXrdRequestSDKType {
+  pagination: PageRequestSDKType;
+}
+export interface QueryListXrdResponse {
+  xrd: CompositeResourceDefinition[];
+  pagination?: PageResponse;
+}
+export interface QueryListXrdResponseProtoMsg {
+  typeUrl: "/overlock.overlock.QueryListXrdResponse";
+  value: Uint8Array;
+}
+export interface QueryListXrdResponseAmino {
+  xrd?: CompositeResourceDefinitionAmino[];
+  pagination?: PageResponseAmino;
+}
+export interface QueryListXrdResponseAminoMsg {
+  type: "/overlock.overlock.QueryListXrdResponse";
+  value: QueryListXrdResponseAmino;
+}
+export interface QueryListXrdResponseSDKType {
+  xrd: CompositeResourceDefinitionSDKType[];
   pagination?: PageResponseSDKType;
 }
 function createBaseQueryParamsRequest(): QueryParamsRequest {
@@ -486,6 +630,538 @@ export const QueryListConfigurationResponse = {
     return {
       typeUrl: "/overlock.overlock.QueryListConfigurationResponse",
       value: QueryListConfigurationResponse.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryListCompositionRequest(): QueryListCompositionRequest {
+  return {
+    pagination: PageRequest.fromPartial({})
+  };
+}
+export const QueryListCompositionRequest = {
+  typeUrl: "/overlock.overlock.QueryListCompositionRequest",
+  encode(message: QueryListCompositionRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
+    if (message.pagination !== undefined) {
+      PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input: BinaryReader | Uint8Array, length?: number): QueryListCompositionRequest {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryListCompositionRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.pagination = PageRequest.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object: Partial<QueryListCompositionRequest>): QueryListCompositionRequest {
+    const message = createBaseQueryListCompositionRequest();
+    message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
+    return message;
+  },
+  fromAmino(object: QueryListCompositionRequestAmino): QueryListCompositionRequest {
+    const message = createBaseQueryListCompositionRequest();
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromAmino(object.pagination);
+    }
+    return message;
+  },
+  toAmino(message: QueryListCompositionRequest): QueryListCompositionRequestAmino {
+    const obj: any = {};
+    obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: QueryListCompositionRequestAminoMsg): QueryListCompositionRequest {
+    return QueryListCompositionRequest.fromAmino(object.value);
+  },
+  fromProtoMsg(message: QueryListCompositionRequestProtoMsg): QueryListCompositionRequest {
+    return QueryListCompositionRequest.decode(message.value);
+  },
+  toProto(message: QueryListCompositionRequest): Uint8Array {
+    return QueryListCompositionRequest.encode(message).finish();
+  },
+  toProtoMsg(message: QueryListCompositionRequest): QueryListCompositionRequestProtoMsg {
+    return {
+      typeUrl: "/overlock.overlock.QueryListCompositionRequest",
+      value: QueryListCompositionRequest.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryListCompositionResponse(): QueryListCompositionResponse {
+  return {
+    compositions: [],
+    pagination: undefined
+  };
+}
+export const QueryListCompositionResponse = {
+  typeUrl: "/overlock.overlock.QueryListCompositionResponse",
+  encode(message: QueryListCompositionResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
+    for (const v of message.compositions) {
+      Composition.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.pagination !== undefined) {
+      PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input: BinaryReader | Uint8Array, length?: number): QueryListCompositionResponse {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryListCompositionResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.compositions.push(Composition.decode(reader, reader.uint32()));
+          break;
+        case 2:
+          message.pagination = PageResponse.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object: Partial<QueryListCompositionResponse>): QueryListCompositionResponse {
+    const message = createBaseQueryListCompositionResponse();
+    message.compositions = object.compositions?.map(e => Composition.fromPartial(e)) || [];
+    message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
+    return message;
+  },
+  fromAmino(object: QueryListCompositionResponseAmino): QueryListCompositionResponse {
+    const message = createBaseQueryListCompositionResponse();
+    message.compositions = object.compositions?.map(e => Composition.fromAmino(e)) || [];
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageResponse.fromAmino(object.pagination);
+    }
+    return message;
+  },
+  toAmino(message: QueryListCompositionResponse): QueryListCompositionResponseAmino {
+    const obj: any = {};
+    if (message.compositions) {
+      obj.compositions = message.compositions.map(e => e ? Composition.toAmino(e) : undefined);
+    } else {
+      obj.compositions = message.compositions;
+    }
+    obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: QueryListCompositionResponseAminoMsg): QueryListCompositionResponse {
+    return QueryListCompositionResponse.fromAmino(object.value);
+  },
+  fromProtoMsg(message: QueryListCompositionResponseProtoMsg): QueryListCompositionResponse {
+    return QueryListCompositionResponse.decode(message.value);
+  },
+  toProto(message: QueryListCompositionResponse): Uint8Array {
+    return QueryListCompositionResponse.encode(message).finish();
+  },
+  toProtoMsg(message: QueryListCompositionResponse): QueryListCompositionResponseProtoMsg {
+    return {
+      typeUrl: "/overlock.overlock.QueryListCompositionResponse",
+      value: QueryListCompositionResponse.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryShowCompositionRequest(): QueryShowCompositionRequest {
+  return {
+    id: BigInt(0)
+  };
+}
+export const QueryShowCompositionRequest = {
+  typeUrl: "/overlock.overlock.QueryShowCompositionRequest",
+  encode(message: QueryShowCompositionRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
+    if (message.id !== BigInt(0)) {
+      writer.uint32(8).uint64(message.id);
+    }
+    return writer;
+  },
+  decode(input: BinaryReader | Uint8Array, length?: number): QueryShowCompositionRequest {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryShowCompositionRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.id = reader.uint64();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object: Partial<QueryShowCompositionRequest>): QueryShowCompositionRequest {
+    const message = createBaseQueryShowCompositionRequest();
+    message.id = object.id !== undefined && object.id !== null ? BigInt(object.id.toString()) : BigInt(0);
+    return message;
+  },
+  fromAmino(object: QueryShowCompositionRequestAmino): QueryShowCompositionRequest {
+    const message = createBaseQueryShowCompositionRequest();
+    if (object.id !== undefined && object.id !== null) {
+      message.id = BigInt(object.id);
+    }
+    return message;
+  },
+  toAmino(message: QueryShowCompositionRequest): QueryShowCompositionRequestAmino {
+    const obj: any = {};
+    obj.id = message.id !== BigInt(0) ? message.id?.toString() : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: QueryShowCompositionRequestAminoMsg): QueryShowCompositionRequest {
+    return QueryShowCompositionRequest.fromAmino(object.value);
+  },
+  fromProtoMsg(message: QueryShowCompositionRequestProtoMsg): QueryShowCompositionRequest {
+    return QueryShowCompositionRequest.decode(message.value);
+  },
+  toProto(message: QueryShowCompositionRequest): Uint8Array {
+    return QueryShowCompositionRequest.encode(message).finish();
+  },
+  toProtoMsg(message: QueryShowCompositionRequest): QueryShowCompositionRequestProtoMsg {
+    return {
+      typeUrl: "/overlock.overlock.QueryShowCompositionRequest",
+      value: QueryShowCompositionRequest.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryShowCompositionResponse(): QueryShowCompositionResponse {
+  return {
+    composition: undefined
+  };
+}
+export const QueryShowCompositionResponse = {
+  typeUrl: "/overlock.overlock.QueryShowCompositionResponse",
+  encode(message: QueryShowCompositionResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
+    if (message.composition !== undefined) {
+      Composition.encode(message.composition, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input: BinaryReader | Uint8Array, length?: number): QueryShowCompositionResponse {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryShowCompositionResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.composition = Composition.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object: Partial<QueryShowCompositionResponse>): QueryShowCompositionResponse {
+    const message = createBaseQueryShowCompositionResponse();
+    message.composition = object.composition !== undefined && object.composition !== null ? Composition.fromPartial(object.composition) : undefined;
+    return message;
+  },
+  fromAmino(object: QueryShowCompositionResponseAmino): QueryShowCompositionResponse {
+    const message = createBaseQueryShowCompositionResponse();
+    if (object.composition !== undefined && object.composition !== null) {
+      message.composition = Composition.fromAmino(object.composition);
+    }
+    return message;
+  },
+  toAmino(message: QueryShowCompositionResponse): QueryShowCompositionResponseAmino {
+    const obj: any = {};
+    obj.composition = message.composition ? Composition.toAmino(message.composition) : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: QueryShowCompositionResponseAminoMsg): QueryShowCompositionResponse {
+    return QueryShowCompositionResponse.fromAmino(object.value);
+  },
+  fromProtoMsg(message: QueryShowCompositionResponseProtoMsg): QueryShowCompositionResponse {
+    return QueryShowCompositionResponse.decode(message.value);
+  },
+  toProto(message: QueryShowCompositionResponse): Uint8Array {
+    return QueryShowCompositionResponse.encode(message).finish();
+  },
+  toProtoMsg(message: QueryShowCompositionResponse): QueryShowCompositionResponseProtoMsg {
+    return {
+      typeUrl: "/overlock.overlock.QueryShowCompositionResponse",
+      value: QueryShowCompositionResponse.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryShowXrdRequest(): QueryShowXrdRequest {
+  return {
+    id: BigInt(0)
+  };
+}
+export const QueryShowXrdRequest = {
+  typeUrl: "/overlock.overlock.QueryShowXrdRequest",
+  encode(message: QueryShowXrdRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
+    if (message.id !== BigInt(0)) {
+      writer.uint32(8).uint64(message.id);
+    }
+    return writer;
+  },
+  decode(input: BinaryReader | Uint8Array, length?: number): QueryShowXrdRequest {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryShowXrdRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.id = reader.uint64();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object: Partial<QueryShowXrdRequest>): QueryShowXrdRequest {
+    const message = createBaseQueryShowXrdRequest();
+    message.id = object.id !== undefined && object.id !== null ? BigInt(object.id.toString()) : BigInt(0);
+    return message;
+  },
+  fromAmino(object: QueryShowXrdRequestAmino): QueryShowXrdRequest {
+    const message = createBaseQueryShowXrdRequest();
+    if (object.id !== undefined && object.id !== null) {
+      message.id = BigInt(object.id);
+    }
+    return message;
+  },
+  toAmino(message: QueryShowXrdRequest): QueryShowXrdRequestAmino {
+    const obj: any = {};
+    obj.id = message.id !== BigInt(0) ? message.id?.toString() : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: QueryShowXrdRequestAminoMsg): QueryShowXrdRequest {
+    return QueryShowXrdRequest.fromAmino(object.value);
+  },
+  fromProtoMsg(message: QueryShowXrdRequestProtoMsg): QueryShowXrdRequest {
+    return QueryShowXrdRequest.decode(message.value);
+  },
+  toProto(message: QueryShowXrdRequest): Uint8Array {
+    return QueryShowXrdRequest.encode(message).finish();
+  },
+  toProtoMsg(message: QueryShowXrdRequest): QueryShowXrdRequestProtoMsg {
+    return {
+      typeUrl: "/overlock.overlock.QueryShowXrdRequest",
+      value: QueryShowXrdRequest.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryShowXrdResponse(): QueryShowXrdResponse {
+  return {
+    xrd: undefined
+  };
+}
+export const QueryShowXrdResponse = {
+  typeUrl: "/overlock.overlock.QueryShowXrdResponse",
+  encode(message: QueryShowXrdResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
+    if (message.xrd !== undefined) {
+      CompositeResourceDefinition.encode(message.xrd, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input: BinaryReader | Uint8Array, length?: number): QueryShowXrdResponse {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryShowXrdResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.xrd = CompositeResourceDefinition.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object: Partial<QueryShowXrdResponse>): QueryShowXrdResponse {
+    const message = createBaseQueryShowXrdResponse();
+    message.xrd = object.xrd !== undefined && object.xrd !== null ? CompositeResourceDefinition.fromPartial(object.xrd) : undefined;
+    return message;
+  },
+  fromAmino(object: QueryShowXrdResponseAmino): QueryShowXrdResponse {
+    const message = createBaseQueryShowXrdResponse();
+    if (object.xrd !== undefined && object.xrd !== null) {
+      message.xrd = CompositeResourceDefinition.fromAmino(object.xrd);
+    }
+    return message;
+  },
+  toAmino(message: QueryShowXrdResponse): QueryShowXrdResponseAmino {
+    const obj: any = {};
+    obj.xrd = message.xrd ? CompositeResourceDefinition.toAmino(message.xrd) : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: QueryShowXrdResponseAminoMsg): QueryShowXrdResponse {
+    return QueryShowXrdResponse.fromAmino(object.value);
+  },
+  fromProtoMsg(message: QueryShowXrdResponseProtoMsg): QueryShowXrdResponse {
+    return QueryShowXrdResponse.decode(message.value);
+  },
+  toProto(message: QueryShowXrdResponse): Uint8Array {
+    return QueryShowXrdResponse.encode(message).finish();
+  },
+  toProtoMsg(message: QueryShowXrdResponse): QueryShowXrdResponseProtoMsg {
+    return {
+      typeUrl: "/overlock.overlock.QueryShowXrdResponse",
+      value: QueryShowXrdResponse.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryListXrdRequest(): QueryListXrdRequest {
+  return {
+    pagination: PageRequest.fromPartial({})
+  };
+}
+export const QueryListXrdRequest = {
+  typeUrl: "/overlock.overlock.QueryListXrdRequest",
+  encode(message: QueryListXrdRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
+    if (message.pagination !== undefined) {
+      PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input: BinaryReader | Uint8Array, length?: number): QueryListXrdRequest {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryListXrdRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.pagination = PageRequest.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object: Partial<QueryListXrdRequest>): QueryListXrdRequest {
+    const message = createBaseQueryListXrdRequest();
+    message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
+    return message;
+  },
+  fromAmino(object: QueryListXrdRequestAmino): QueryListXrdRequest {
+    const message = createBaseQueryListXrdRequest();
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageRequest.fromAmino(object.pagination);
+    }
+    return message;
+  },
+  toAmino(message: QueryListXrdRequest): QueryListXrdRequestAmino {
+    const obj: any = {};
+    obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: QueryListXrdRequestAminoMsg): QueryListXrdRequest {
+    return QueryListXrdRequest.fromAmino(object.value);
+  },
+  fromProtoMsg(message: QueryListXrdRequestProtoMsg): QueryListXrdRequest {
+    return QueryListXrdRequest.decode(message.value);
+  },
+  toProto(message: QueryListXrdRequest): Uint8Array {
+    return QueryListXrdRequest.encode(message).finish();
+  },
+  toProtoMsg(message: QueryListXrdRequest): QueryListXrdRequestProtoMsg {
+    return {
+      typeUrl: "/overlock.overlock.QueryListXrdRequest",
+      value: QueryListXrdRequest.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryListXrdResponse(): QueryListXrdResponse {
+  return {
+    xrd: [],
+    pagination: undefined
+  };
+}
+export const QueryListXrdResponse = {
+  typeUrl: "/overlock.overlock.QueryListXrdResponse",
+  encode(message: QueryListXrdResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
+    for (const v of message.xrd) {
+      CompositeResourceDefinition.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.pagination !== undefined) {
+      PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input: BinaryReader | Uint8Array, length?: number): QueryListXrdResponse {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryListXrdResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.xrd.push(CompositeResourceDefinition.decode(reader, reader.uint32()));
+          break;
+        case 2:
+          message.pagination = PageResponse.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object: Partial<QueryListXrdResponse>): QueryListXrdResponse {
+    const message = createBaseQueryListXrdResponse();
+    message.xrd = object.xrd?.map(e => CompositeResourceDefinition.fromPartial(e)) || [];
+    message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
+    return message;
+  },
+  fromAmino(object: QueryListXrdResponseAmino): QueryListXrdResponse {
+    const message = createBaseQueryListXrdResponse();
+    message.xrd = object.xrd?.map(e => CompositeResourceDefinition.fromAmino(e)) || [];
+    if (object.pagination !== undefined && object.pagination !== null) {
+      message.pagination = PageResponse.fromAmino(object.pagination);
+    }
+    return message;
+  },
+  toAmino(message: QueryListXrdResponse): QueryListXrdResponseAmino {
+    const obj: any = {};
+    if (message.xrd) {
+      obj.xrd = message.xrd.map(e => e ? CompositeResourceDefinition.toAmino(e) : undefined);
+    } else {
+      obj.xrd = message.xrd;
+    }
+    obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: QueryListXrdResponseAminoMsg): QueryListXrdResponse {
+    return QueryListXrdResponse.fromAmino(object.value);
+  },
+  fromProtoMsg(message: QueryListXrdResponseProtoMsg): QueryListXrdResponse {
+    return QueryListXrdResponse.decode(message.value);
+  },
+  toProto(message: QueryListXrdResponse): Uint8Array {
+    return QueryListXrdResponse.encode(message).finish();
+  },
+  toProtoMsg(message: QueryListXrdResponse): QueryListXrdResponseProtoMsg {
+    return {
+      typeUrl: "/overlock.overlock.QueryListXrdResponse",
+      value: QueryListXrdResponse.encode(message).finish()
     };
   }
 };
